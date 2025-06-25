@@ -7,7 +7,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
           - name : checkout-action
-            uses: checkout@v4
+            uses: actions/checkout@v4.2.2
             
           - name: Greetings
             run: echo "hi"
