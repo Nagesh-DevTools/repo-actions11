@@ -10,10 +10,17 @@ jobs:
             uses: actions/checkout@v4.2.2
             
           - name: Greetings
-            run: echo "hi"
+            run: |
+                echo "hi"
+                ls -lrt
+                cat README.md
 
-          - name: Listfiles
-            run: ls
+          - name : Third party library
+            run : cowsay -f lion "King of jungle" >> lion.txt # -f is used to specify the name
+                                                              # cowsay is a third party library
+
+         
+
 
 
     
