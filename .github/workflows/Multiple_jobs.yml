@@ -1,0 +1,33 @@
+name: Multiple Jobs Cowsay Demo
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install cowsay
+        run: sudo apt-get update && sudo apt-get install -y cowsay
+
+      - name: Run cowsay in Job 1
+        run: cowsay "Hello from Job 1!"
+
+  build2:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Install cowsay
+        run: sudo apt-get update && sudo apt-get install -y cowsay
+
+      - name: Run cowsay in Job 2
+        run: cowsay "Hello from Job 2!"
+
+  build3:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Install cowsay
+        run: sudo apt-get update && sudo apt-get install -y cowsay
+
+      - name: Run cowsay in Job 3
+        run: cowsay "Hello from Job 3!"
