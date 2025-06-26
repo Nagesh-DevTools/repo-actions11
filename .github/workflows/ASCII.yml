@@ -13,7 +13,7 @@ jobs:
             run: sudo apt-get install cowsay -y
 
           - name : Execute
-            run: cowsay -f lion " I am king " >> roar.txt
+            run: cowsay -f camel " I am king " >> camel.txt
 
           - name : Read file
-            run: cat roar.txt
+            run: cat camel.txt
