@@ -1,4 +1,4 @@
-name: my first-action
+name: action
 
 on: push
 
