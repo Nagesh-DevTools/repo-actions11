@@ -1,0 +1,15 @@
+name: action
+
+on: push
+
+jobs:
+    first-job : 
+        runs-on: ubuntu-latest
+        steps:
+          - name : checkout-action
+            uses: actions/checkout@v4.2.2
+
+          - name: Install cowsay p
+                run:|
+                chmod +x script.sh
+                ./script.sh
