@@ -1,4 +1,4 @@
-name: Multiple Jobs Cowsay Demo
+name: Build-Test-Deploy Pipeline
 
 on: [push]
 
@@ -6,28 +6,37 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Install cowsay
         run: sudo apt-get update && sudo apt-get install -y cowsay
 
-      - name: Run cowsay in Job 1
-        run: cowsay "Hello from Job 1!"
+      - name: Build step
+        run: echo "Building the project..." && cowsay "Build complete!"
 
-  build2:
+  test:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Install cowsay
         run: sudo apt-get update && sudo apt-get install -y cowsay
 
-      - name: Run cowsay in Job 2
-        run: cowsay "Hello from Job 2!"
+      - name: Test step
+        run: echo "Running tests..." && cowsay "Tests passed!"
 
-  build3:
+  deploy:
     runs-on: ubuntu-latest
-    needs: build
+    needs: test
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Install cowsay
         run: sudo apt-get update && sudo apt-get install -y cowsay
 
-      - name: Run cowsay in Job 3
-        run: cowsay "Hello from Job 3!"
+      - name: Deploy step
+        run: echo "Deploying application..." && cowsay "Deployment successful!"
