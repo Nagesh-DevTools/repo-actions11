@@ -3,7 +3,7 @@ name : ASCII
 on:push
 
   name:Checkout repo
-  run:actions/Checkout@v2.2
+  run:actions/checkout@v4.2.2
 
   name:Execute
   run :|
