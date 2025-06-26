@@ -19,6 +19,7 @@ jobs:
     steps:
       - name: Deploy image
         run: echo "Image deployed"
+             sleep 120s
 
       
 
