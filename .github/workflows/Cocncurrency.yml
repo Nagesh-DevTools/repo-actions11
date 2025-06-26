@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     concurrency:
       group: prod
-      cancel-in-progress: true
+      cancel-in-progress: false
     steps:
       - name: Deploy image
         run: echo "Image deployed"
