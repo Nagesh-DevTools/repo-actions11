@@ -1,0 +1,27 @@
+name: Job concurrency
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build images
+        run: echo "Building a file"
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    concurrency:
+      group: prod
+      cancel-in-progress: true
+    steps:
+      - name: Deploy image
+        run: echo "Image deployed"
+
+      
+
+
+
+
