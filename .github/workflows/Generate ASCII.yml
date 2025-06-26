@@ -1,0 +1,12 @@
+name : ASCII
+
+on:push
+
+  name:Checkout repo
+  run:actions/Checkout@v2.2
+
+  name:Execute
+  run :|
+    chmod +x shell_script.sh
+    ./shell_script.sh
+  
