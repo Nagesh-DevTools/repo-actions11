@@ -1,0 +1,26 @@
+name: variables
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: docker-build
+        env:
+          CONTAINER_REGISTRY: docker.io
+          DOCKER_NAME: Nagesh 
+          IMAGE_NAME: github-actions-memecached
+        run: echo docker build -t $CONTAINER_REGISTRY/$DOCKER_NAME/$IMAGE_NAME
+
+      - name: docker-login
+        env:
+          DOCKER_PASSWORD: 53781!@#$^&*
+          DOCKER_USERNAME: Nagesh
+        run: echo docker login --username=$DOCKER_USERNAME --password=$DOCKER_PASSWORD
+
+        
+
+
+
+
