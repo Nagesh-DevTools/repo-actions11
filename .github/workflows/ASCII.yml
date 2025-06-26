@@ -11,7 +11,6 @@ jobs:
 
           - name: Install cowsay p
                 run:|
-                chmod 777 shell_script.yml
-                ./shell_script.yml
-            
+                chmod 777 shell_script.sh
+                ./shell_script.sh
               
