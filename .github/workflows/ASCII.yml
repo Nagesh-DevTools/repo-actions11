@@ -9,6 +9,6 @@ jobs:
           - name : checkout-action
             uses: actions/checkout@v4.2.2
 
-          - name: Install cowsay
+          - name: Install cowsay p
             run: chmod 777 ./shell_script.yml
               
