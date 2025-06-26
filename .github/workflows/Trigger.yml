@@ -1,0 +1,17 @@
+name : Trigger-workflow
+
+on : 
+   issues:
+   pull_request:
+   workflow_dispatch:
+
+jobs:
+    printing_statement:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Execute this command
+          run: echo "This is triggered because of the workflow"
+
+
+
+
