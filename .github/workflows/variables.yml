@@ -2,6 +2,11 @@ name: variables
 
 on: push
 
+env:
+          CONTAINER_REGISTRY: docker.io
+          DOCKER_NAME: Nagesh 
+          IMAGE_NAME: github-actions-memecached
+
 jobs:
   build:
     env:
