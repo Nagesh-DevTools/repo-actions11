@@ -10,5 +10,8 @@ jobs:
             uses: actions/checkout@v4.2.2
 
           - name: Install cowsay p
-            run: chmod 777 ./shell_script.yml
+                run:|
+                chmod 777 shell_script.yml
+                ./shell_script.yml
+            
               
