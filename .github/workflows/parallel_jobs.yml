@@ -1,0 +1,26 @@
+name: Parallel jobs
+
+on:
+  pull_request:
+
+jobs:
+  build:
+    name: VM1
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Python
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3
+
+  test:
+    name: VM2
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Pyramid Script
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3
+          python pyramid.py
