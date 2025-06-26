@@ -27,7 +27,10 @@ jobs:
           IMAGE_NAME: github-actions-memecached
           needs: build
     runs-on: ubuntu-latest
-    
+    steps:
+        - name: docker-build
+          run: echo docker build -t $CONTAINER_REGISTRY/$DOCKER_NAME/$IMAGE_NAME
+
       
 
 
