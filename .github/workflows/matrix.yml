@@ -8,7 +8,7 @@ jobs:
    strategy:
      matrix:
        OS: [ubuntu-latest,ubuntu-22.04]
-       files: [pyramid.py]
+       files: [pyramid.py, helloworld.py]
        
    runs-on: ${{ matrix.OS }}
    steps:
