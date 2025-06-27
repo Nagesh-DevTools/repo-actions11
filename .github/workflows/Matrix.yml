@@ -1,26 +1,37 @@
-name: Test with fail-fast and max-parallel
+name : Matrix
 
 on:
-  push:
+  push
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
+  build:
     strategy:
+      fail-fast: false
+      max-paralell: 2
       matrix:
-        python-version: [3.8, 3.9, 3.10, 3.11]
-      fail-fast: false          
-      max-parallel: 2           
-    steps:
-      - uses: actions/checkout@v4
+        os: [ubuntu-latest , windows-latest]
+        images: [hello-world , nginx ]
+        exclude :
+          os: windows-latest
+          images: nginx
+        include:
+          os: ubuntu-22.04
+          images: busybox
 
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python-version }}
+    runs-on: ${{ matrix.os }}
+    steps :
+      - uses : actions/checkout@v4
 
-      - name: Run tests
-        run: |
-          python --version
-          # Simulate test command, replace with your test runner
-          python -c "exit(1)"    # <-- this will fail to demonstrate fail-fast
+      - name: docker
+        run : docker info
+
+      - name : run docker on ${{ matrix.os }}
+        run : docker run ${{ matrix.images }}
+
+
+
+
+        - uses: actions/checkout@v4
+
+        
+        
