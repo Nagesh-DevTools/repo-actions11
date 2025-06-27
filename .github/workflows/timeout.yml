@@ -4,17 +4,16 @@ on:
   workflow_dispatch:
     
 jobs:
-  build:
 
+  build:
     name: Run VM
     runs-on: ubuntu-latest
-    
+    timeout-minutes: 1
     steps:
     
-    - uses: actions/checkout@v4
-    - name: install
-      timeout-minutes: 1
-      run : |
+     - uses: actions/checkout@v4
+     - name: install
+       run : |
         sudo apt update
         sudo apt-get install python3
         sleep 120
