@@ -17,5 +17,5 @@ jobs:
         - name: Install and run
           run: |
             sudo apt update
-            sudo apt-get install python
-            python ${{ matrix.files }}
+            sudo apt-get install python3
+            python3 ${{ matrix.files }}
