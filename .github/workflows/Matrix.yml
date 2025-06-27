@@ -7,16 +7,16 @@ jobs:
   build:
     strategy:
       fail-fast: false
-      max-paralell: 2
+      max-parallel: 2
       matrix:
         os: [ubuntu-latest , windows-latest]
         images: [hello-world , nginx ]
-        exclude :
-          os: windows-latest
-          images: nginx
+        exclude:
+          - os: windows-latest
+            images: nginx
         include:
-          os: ubuntu-22.04
-          images: busybox
+           - os: ubuntu-22.04
+             images: busybox
 
     runs-on: ${{ matrix.os }}
     steps :
@@ -31,7 +31,7 @@ jobs:
 
 
 
-        - uses: actions/checkout@v4
+
 
         
         
