@@ -1,27 +1,25 @@
-
-name: Matrix 
+name: Test with fail-fast and max-parallel
 
 on:
   push:
 
 jobs:
- build:
-   strategy:
-     fail-fast : true
-     max-parallel: 2
-     matrix:
-       OS: [ubuntu-latest,ubuntu-22.04 , windows-latest]
-       files: [pyramid.py, helloworld.py]
-       
-   runs-on: ${{ matrix.OS }}
-   steps:
-        - uses: actions/checkout@v4
-        -  uses: actions/setup-python@v5
-           with:
-              python-version: '3.11'
-    
-        - name: Install and run
-          run: |
-            sudo apt update
-            sudo apt-get install python3
-            python3 ${{ matrix.files }}
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.7, 3.8, 3.9, 3.10, 3.11]
+        files: [pyrmaid.py , helloworld.py]
+      fail-fast: true           
+      max-parallel: 2    
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Run tests
+        run: |
+            python ${{ matrix.files }}
