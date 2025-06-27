@@ -1,0 +1,21 @@
+name: Matrix 
+
+on:
+  push:
+
+jobs:
+ build:
+   strategy:
+     matrix:
+       OS: [ubuntu-latest,ubuntu-22.04]
+       files: [pyramid.py]
+       
+   runs-on: ${{ matrix.OS }}
+   steps:
+        - uses: actions/checkout@v4
+    
+        - name: Install and run
+          run: |
+            sudo apt update
+            sudo apt-get install python
+            python ${{ matrix.files }}
