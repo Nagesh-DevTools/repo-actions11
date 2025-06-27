@@ -8,10 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.2,3.4]
-        files: [pyrmaid.py , helloworld.py]
-      fail-fast: false         
-      max-parallel: 2    
+        python-version: [3.7, 3.8, 3.9, 3.10, 3.11]
+      fail-fast: true           
+      max-parallel: 2           
     steps:
       - uses: actions/checkout@v4
 
@@ -22,4 +21,6 @@ jobs:
 
       - name: Run tests
         run: |
-            python ${{ matrix.files }}
+          python --version
+          # Simulate test command, replace with your test runner
+          python -c "exit(1)"    # <-- this will fail to demonstrate fail-fast
