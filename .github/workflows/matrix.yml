@@ -1,26 +1,16 @@
-name: Matrix 
+name: Run pyramid.py on Windows
 
 on:
   push:
 
 jobs:
- build:
-   strategy:
-     matrix:
-       OS: [ubuntu-latest,ubuntu-22.04 , windows-latest]
-       files: [pyramid.py, helloworld.py]
-       
-   runs-on: ${{ matrix.OS }}
-   steps:
-        - uses: actions/checkout@v4
-        -  uses: actions/setup-python@v5
-           with:
-              python-version: '3.11'
-    
-        - name: Install and run
-          run: |
-            sudo apt update
-            sudo apt-get install python3
-            python3 ${{ matrix.files }}
+  run-python-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
-      
+      - name: Run pyramid.py
+        run: python pyramid.py
