@@ -1,37 +1,33 @@
-name : Matrix
+name: Docker Matrix with Include/Exclude
 
-on:
-  push
+on: [push, pull_request]
 
 jobs:
-  build:
+  docker-build:
+    runs-on: ubuntu-latest
     strategy:
-      fail-fast: false
-      max-parallel: 2
       matrix:
-        os: [ubuntu-latest , windows-latest]
-        images: [hello-world , nginx ]
+        base-image: [alpine, debian, ubuntu]
+        app-version: [v1, v2]
+
         exclude:
-          - os: windows-latest
-            images: nginx
+          
+          - base-image: alpine
+            app-version: v2
+
         include:
-           - os: ubuntu-22.04
-             images: busybox
+         
+          - base-image: busybox
+            app-version: v1
 
-    runs-on: ${{ matrix.os }}
-    steps :
-      - uses : actions/checkout@v4
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: docker
-        run : docker info
-
-      - name : run docker on ${{ matrix.os }}
-        run : docker run ${{ matrix.images }}
-
-
-
-
-
-
-        
-        
+      - name: Build Docker image
+        run: |
+          echo "Building with base: ${{ matrix.base-image }} and version: ${{ matrix.app-version }}"
+          docker build \
+            --build-arg BASE_IMAGE=${{ matrix.base-image }} \
+            --build-arg APP_VERSION=${{ matrix.app-version }} \
+            -t myapp:${{ matrix.base-image }}-${{ matrix.app-version }} .
